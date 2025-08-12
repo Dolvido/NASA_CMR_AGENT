@@ -1,0 +1,17 @@
+# Normalize line endings and avoid CRLF churn on Windows
+* text=auto
+
+# Force LF for source files
+*.py  text eol=lf
+*.md  text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.sh text eol=lf
+
+# Keep native endings for Windows scripts
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+

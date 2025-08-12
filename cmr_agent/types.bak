@@ -1,0 +1,2 @@
+from typing import Literal, TypedDict, Any, Optional\n\nIntentType = Literal['exploratory', 'specific', 'analytical']\n\nclass QueryState(TypedDict, total=False):\n    user_query: str\n    intent: IntentType\n    subqueries: list[str]\n    validated: bool\n    validation_notes: str\n    cmr_results: dict\n    analysis: dict\n    synthesis: str\n    context: dict\n\nclass AgentResult(TypedDict, total=False):\n    name: str\n    data: Any\n    error: Optional[str]\n
+

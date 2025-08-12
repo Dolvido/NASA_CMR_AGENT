@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NASA CMR AI Agent UI</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header>
+    <h1>NASA CMR AI Agent</h1>
+    <p class="sub">Natural-language search and analysis over NASA CMR</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <label for="query">Query</label>
+      <textarea id="query" rows="3" placeholder="e.g., Find precipitation datasets for Sub-Saharan Africa 2015-2023"></textarea>
+
+      <div class="row">
+        <div class="field">
+          <label for="session">Session ID (optional)</label>
+          <input id="session" type="text" placeholder="my-session-1" />
+        </div>
+        <div class="actions">
+          <button id="runBtn">Run</button>
+          <button id="streamBtn">Stream</button>
+          <button id="stopBtn" class="secondary" disabled>Stop</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="output">
+      <div class="panel">
+        <div class="panel-header">Streaming updates</div>
+        <pre id="stream"></pre>
+      </div>
+      <div class="panel">
+        <div class="panel-header with-actions">
+          <span>Final result</span>
+          <div class="panel-actions">
+            <button id="copyJson" class="secondary">Copy JSON</button>
+            <button id="downloadJson" class="secondary">Download JSON</button>
+          </div>
+        </div>
+        <pre id="result"></pre>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="panel">
+        <div class="panel-header">Summary</div>
+        <div class="panel-body">
+          <div id="summaryInfo" class="info muted" style="display:none"></div>
+          <div id="summaryBody"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recs">
+      <div class="panel">
+        <div class="panel-header">Recommended datasets</div>
+        <div class="panel-body">
+          <div id="recsInfo" class="info muted" style="display:none"></div>
+          <table id="recsTable" class="table">
+            <thead>
+              <tr>
+                <th style="width:56px">Rank</th>
+                <th>Name</th>
+                <th style="width:160px">Actions</th>
+                <th style="width:220px">Why</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <div id="recsEmpty" class="muted">Run a query to see recommendations.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="help">
+      <details>
+        <summary>Endpoints</summary>
+        <ul>
+          <li><code>GET /query?query=...&session_id=...</code></li>
+          <li><code>GET /stream?query=...&session_id=...</code> (Server-Sent Events)</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <span>Server status: <span id="status">unknown</span></span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
+
+
